@@ -30,7 +30,7 @@ interface ApiInterface {
     suspend fun getCurrentUser(): StaffDTO
 
     companion object {
-        private const val API_URL = "http://railwayserver.herokuapp.com/api/v1/"
+        private const val API_URL = "https://railwayserver.herokuapp.com/api/v1/"
         private const val AUTH = "auth"
 
         private val client = OkHttpClient().newBuilder()

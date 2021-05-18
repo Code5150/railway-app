@@ -3,4 +3,5 @@
     <string name="login_label">Логин</string>
     <string name="password_label">Пароль</string>
     <string name="login_button_text">Войти</string>
+    <string name="measure_button_text">Снять показания</string>
 </resources>

@@ -94,7 +94,7 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintHeight_percent="0.15"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_percent="0.4" />
 

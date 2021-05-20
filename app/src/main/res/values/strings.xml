@@ -4,4 +4,7 @@
     <string name="password_label">Пароль</string>
     <string name="login_button_text">Войти</string>
     <string name="measure_button_text">Снять показания</string>
+    <string name="switch_group_dropdown_hint">Группа переводов</string>
+    <string name="switch_dropdown_hint">Стрелочный перевод</string>
+    <string name="filename_format">yyyy-MM-dd-HH-mm-ss-SSS</string>
 </resources>

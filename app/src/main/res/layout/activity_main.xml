@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Spinner
+
+    <!--<Spinner
         android:id="@+id/spinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -16,7 +17,53 @@
         app:layout_constraintHorizontal_bias="0.365"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.8" />
+        app:layout_constraintWidth_percent="0.8" />-->
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:hint="@string/switch_group_dropdown_hint"
+        android:id="@+id/switchGroupList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <AutoCompleteTextView
+            android:id="@+id/switchGroupDropdown"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:inputType="none"
+            android:text="AutoCompleteTextView" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:hint="@string/switch_dropdown_hint"
+        android:id="@+id/switchList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/switchGroupList">
+
+
+        <AutoCompleteTextView
+            android:id="@+id/switchDropdown"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:inputType="none"
+            android:text="AutoCompleteTextView" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/button"
@@ -30,4 +77,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

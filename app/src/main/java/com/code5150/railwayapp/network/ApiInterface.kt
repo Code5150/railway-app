@@ -2,6 +2,7 @@ package com.code5150.railwayapp.network
 
 import com.code5150.railwayapp.network.dto.StaffDTO
 import com.code5150.railwayapp.network.dto.SwitchDTO
+import com.code5150.railwayapp.network.dto.SwitchGroupDTO
 import com.google.gson.GsonBuilder
 import okhttp3.Cookie
 import okhttp3.CookieJar
@@ -10,10 +11,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ApiInterface {
 
@@ -26,8 +24,12 @@ interface ApiInterface {
 
     @GET("allSwitches")
     suspend fun getAllSwitches(): List<SwitchDTO>
+    @GET("allSwitchGroups")
+    suspend fun getAllSwitchGroups(): List<SwitchGroupDTO>
     @GET("currentUser")
     suspend fun getCurrentUser(): StaffDTO
+    @GET("switchesInGroup/{groupId}")
+    suspend fun getSwitchesByGroup(@Path("groupId") groupId: Int): List<SwitchGroupDTO>
 
     companion object {
         private const val API_URL = "https://railwayserver.herokuapp.com/api/v1/"

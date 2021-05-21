@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RailwayApp">
-        <activity android:name=".CameraActivity"></activity>
+        <activity android:name=".RecognitionResultsActivity"></activity>
+        <activity android:name=".CameraActivity" />
         <activity android:name=".SwitchChoiceActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>

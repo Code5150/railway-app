@@ -12,11 +12,9 @@ class SwitchChoiceViewModel: ViewModel() {
 
     private val apiService = ApiInterface()
 
-    lateinit var switch: MutableLiveData<Switch>
-        private set
+    val switch = MutableLiveData<Switch>()
 
-    lateinit var switchGroup: MutableLiveData<SwitchGroup>
-        private set
+    val switchGroup = MutableLiveData<SwitchGroup>()
 
     private val _switches = liveData {
         emit(apiService.getAllSwitches().map { Switch(it) })

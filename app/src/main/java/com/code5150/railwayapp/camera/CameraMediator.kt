@@ -22,7 +22,8 @@ class CameraMediator(
     private val context: Context,
     private val lifecycleOwner: LifecycleOwner,
     private val previewView: PreviewView,
-    private val switchCameraButton: ImageButton
+    private val onAnalysisSuccess: (Int, Int) -> Unit
+    //private val switchCameraButton: ImageButton
 ) {
 
     companion object {
@@ -38,6 +39,7 @@ class CameraMediator(
     private val cameraExecutor: ExecutorService = Executors.newSingleThreadExecutor()
     private lateinit var cameraSelector: CameraSelector
     private lateinit var imageCapture: ImageCapture
+    private lateinit var imageAnalyzer: ImageAnalysis
 
     fun startCamera(cam: Int = currentCam) {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(context)
@@ -55,6 +57,12 @@ class CameraMediator(
                 .setCaptureMode(ImageCapture.CAPTURE_MODE_MAXIMIZE_QUALITY)
                 .build()
 
+            imageAnalyzer = ImageAnalysis.Builder()
+                .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+                .build().also {
+                    it.setAnalyzer(cameraExecutor, MeasureAnalyzer(onAnalysisSuccess))
+                }
+
             cameraSelector = CameraSelector.Builder().requireLensFacing(cam).build()
 
             try {
@@ -63,14 +71,14 @@ class CameraMediator(
 
                 // Bind use cases to camera
                 camera = cameraProvider.bindToLifecycle(
-                    lifecycleOwner, cameraSelector, preview, imageCapture
+                    lifecycleOwner, cameraSelector, preview, imageAnalyzer
                 )
                 preview?.setSurfaceProvider(previewView.surfaceProvider)
 
                 //setting that new camera is being used
                 currentCam = cam
             } catch (exc: Exception) {
-                switchCameraButton.visibility = View.GONE
+                //switchCameraButton.visibility = View.GONE
                 //starting previous cam again
                 startCamera(currentCam)
                 Log.e(TAG, "Use case binding failed", exc)
@@ -79,7 +87,7 @@ class CameraMediator(
         }, ContextCompat.getMainExecutor(context))
     }
 
-    fun switchCamera(){
+    /*fun switchCamera(){
         when (currentCam) {
             CameraSelector.LENS_FACING_BACK -> startCamera(CameraSelector.LENS_FACING_FRONT)
             CameraSelector.LENS_FACING_FRONT -> startCamera(CameraSelector.LENS_FACING_BACK)
@@ -164,7 +172,7 @@ class CameraMediator(
 //                            } else focusIndicator.setImageDrawable(context.getDrawable(R.drawable.ic_no_focus))
                             Thread.sleep(3000L)
                             focused.cancel(false)
-                            /*focusIndicator.setImageDrawable(context.getDrawable(R.drawable.ic_no_focus))*/
+                            *//*focusIndicator.setImageDrawable(context.getDrawable(R.drawable.ic_no_focus))*//*
                         }, cameraExecutor)
                     } catch (e: CameraInfoUnavailableException) {
                         Log.e("ERROR", "Cannot access camera", e)
@@ -174,5 +182,5 @@ class CameraMediator(
                 else -> false // Unhandled event
             }
         }
-    }
+    }*/
 }

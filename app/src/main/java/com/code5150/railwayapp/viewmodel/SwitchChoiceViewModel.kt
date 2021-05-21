@@ -1,22 +1,27 @@
 package com.code5150.railwayapp.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
+import androidx.lifecycle.*
 import com.code5150.railwayapp.model.Staff
 import com.code5150.railwayapp.model.Switch
 import com.code5150.railwayapp.model.SwitchGroup
 import com.code5150.railwayapp.network.ApiInterface
-import com.code5150.railwayapp.network.dto.SwitchDTO
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class MainViewModel: ViewModel() {
+class SwitchChoiceViewModel: ViewModel() {
 
     private val apiService = ApiInterface()
+
+    lateinit var switch: MutableLiveData<Switch>
+        private set
+
+    lateinit var switchGroup: MutableLiveData<SwitchGroup>
+        private set
 
     private val _switches = liveData {
         emit(apiService.getAllSwitches().map { Switch(it) })
     } as MutableLiveData
+
     val switches = _switches as LiveData<List<Switch>>
 
     private val _switchGroups = liveData {
@@ -27,5 +32,11 @@ class MainViewModel: ViewModel() {
 
     val staff = liveData {
         emit(Staff(apiService.getCurrentUser()))
+    }
+
+    fun filterSwitchesByGroup(id: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            _switches.value = apiService.getSwitchesByGroup(id).map { Switch(it) }
+        }
     }
 }

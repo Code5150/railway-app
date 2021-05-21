@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".SwitchChoiceActivity">
 
 
     <!--<Spinner
@@ -20,6 +20,7 @@
         app:layout_constraintWidth_percent="0.8" />-->
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/switchGroupList"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,7 +28,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:hint="@string/switch_group_dropdown_hint"
-        android:id="@+id/switchGroupList"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -42,7 +43,18 @@
             android:text="AutoCompleteTextView" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <ProgressBar
+        android:id="@+id/switchGroupProgressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/switchGroupList"
+        app:layout_constraintStart_toStartOf="@+id/switchGroupList"
+        app:layout_constraintTop_toTopOf="@+id/switchGroupList" />
+
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/switchList"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -50,7 +62,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:hint="@string/switch_dropdown_hint"
-        android:id="@+id/switchList"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/switchGroupList">
@@ -65,18 +77,28 @@
             android:text="AutoCompleteTextView" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <ProgressBar
+        android:id="@+id/switchProgressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/switchList"
+        app:layout_constraintStart_toStartOf="@+id/switchList"
+        app:layout_constraintTop_toTopOf="@+id/switchList" />
+
     <Button
-        android:id="@+id/button"
+        android:id="@+id/takeMeasuresButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="@string/measure_button_text"
         android:layout_marginBottom="50dp"
+        android:text="@string/measure_button_text"
         android:textSize="24sp"
-        app:layout_constraintWidth_percent="0.5"
-        app:layout_constraintHeight_percent="0.12"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHeight_percent="0.12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.5" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

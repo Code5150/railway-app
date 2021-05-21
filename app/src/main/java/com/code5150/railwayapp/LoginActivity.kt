@@ -3,7 +3,6 @@ package com.code5150.railwayapp
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.code5150.railwayapp.databinding.ActivityLoginBinding
@@ -36,7 +35,7 @@ class LoginActivity : AppCompatActivity() {
                             binding.editTextTextPassword.editText!!.text.toString()
                         )
                     ) {
-                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                        val intent = Intent(this@LoginActivity, SwitchChoiceActivity::class.java)
                         startActivity(intent)
                     } else {
                         withContext(Dispatchers.Main) {

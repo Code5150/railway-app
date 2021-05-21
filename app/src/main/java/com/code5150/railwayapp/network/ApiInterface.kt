@@ -29,7 +29,7 @@ interface ApiInterface {
     @GET("currentUser")
     suspend fun getCurrentUser(): StaffDTO
     @GET("switchesInGroup/{groupId}")
-    suspend fun getSwitchesByGroup(@Path("groupId") groupId: Int): List<SwitchGroupDTO>
+    suspend fun getSwitchesByGroup(@Path("groupId") groupId: Int): List<SwitchDTO>
 
     companion object {
         private const val API_URL = "https://railwayserver.herokuapp.com/api/v1/"
